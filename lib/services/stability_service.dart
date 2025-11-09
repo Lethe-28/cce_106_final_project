@@ -43,6 +43,8 @@ class StabilityService {
         filename: 'original.jpg',
       ));
 
+
+
       // FIX 4: v2beta requires the prompt field name to be 'prompt'
       request.fields['prompt'] = stylePrompts[style] ?? "Apply $style style to this image";
       

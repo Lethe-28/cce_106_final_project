@@ -24,6 +24,8 @@ class _StyleSelectionScreenState extends State<StyleSelectionScreen> {
 
   bool _isProcessing = false;
 
+  
+
   final List<String> _availableStyles = const [
     "Anime",
     "Oil Painting",

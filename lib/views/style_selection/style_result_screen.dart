@@ -13,6 +13,8 @@ class StyleResultScreen extends StatelessWidget {
     required this.styleName,
   });
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

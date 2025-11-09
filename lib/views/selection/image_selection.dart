@@ -69,6 +69,7 @@ class ImageSelectionScreen extends StatelessWidget {
             ),
           ),
         );
+        
       }
     } catch (e) {
       debugPrint("Error with camera: $e");
