@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Entrepreneurial Mind Process</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F5;
+            color: #333333;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 320px;
+            }
+        }
+        .timeline-step {
+            background-color: #00796B;
+            color: white;
+            border-color: #004D40;
+        }
+        .timeline-step-alt {
+            background-color: #FDD835;
+            color: #333333;
+            border-color: #FBC02D;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto max-w-7xl p-4 md:p-10">
+
+        <header class="text-center my-12 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black text-[#004D40] mb-4">
+                The Entrepreneurial Mind Process
+            </h1>
+            <p class="text-lg md:text-xl text-[#333333] max-w-3xl mx-auto">
+                A cyclical framework designed to guide an entrepreneur from initial concept through launch and continuous improvement.
+            </p>
+        </header>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center text-[#004D40] mb-12">The 7-Step Journey</h2>
+            <div class="max-w-3xl mx-auto">
+                <ol class="relative border-l-4 border-[#00796B]">
+                    
+                    <li class="mb-10 ml-8">
+                        <span class="absolute flex items-center justify-center w-10 h-10 timeline-step rounded-full -left-5 border-4">
+                            <span class="text-lg font-bold">1</span>
+                        </span>
+                        <div class="bg-white p-6 rounded-lg card-shadow border-l-4 border-[#00796B]">
+                            <h3 class="text-2xl font-bold text-[#004D40] mb-3">1. The Idea <span class="ml-2">💡</span></h3>
+                            <p class="mb-2"><strong>What:</strong> The initial spark or concept for a product, service, or solution that addresses a known problem or need.</p>
+                            <p class="mb-2"><strong>Why:</strong> It is the foundational insight; everything else—strategy, team, and launch—is built upon this core concept.</p>
+                            <p><strong>How:</strong> Observe everyday pain points, brainstorm potential solutions, and leverage your unique expertise or resources.</p>
+                        </div>
+                    </li>
+
+                    <li class="mb-10 ml-8">
+                        <span class="absolute flex items-center justify-center w-10 h-10 timeline-step-alt rounded-full -left-5 border-4">
+                            <span class="text-lg font-bold">2</span>
+                        </span>
+                        <div class="bg-white p-6 rounded-lg card-shadow border-l-4 border-[#FDD835]">
+                            <h3 class="text-2xl font-bold text-[#004D40] mb-3">2. The Opportunity <span class="ml-2">🎯</span></h3>
+                            <p class="mb-2"><strong>What:</strong> Validating that the initial idea is a viable <strong>business opportunity</strong>—meaning it has market demand and economic potential.</p>
+                            <p class="mb-2"><strong>Why:</strong> To avoid wasting time and capital on an idea that, while interesting, has no paying market or path to profitability.</p>
+                            <p><strong>How:</strong> Conduct preliminary feasibility studies, analyze market size (TAM, SAM, SOM), and assess the growth potential of the industry.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center text-[#004D40] mb-12">From Research to Reality</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <div class="bg-white p-6 rounded-lg card-shadow lg:col-span-2">
+                    <h3 class="text-2xl font-bold text-[#004D40] mb-4 text-center">3. Conducting Market Research</h3>
+                    <p class="text-center text-gray-600 mb-6">This step involves systematically gathering data. It's a mix of primary research (going to the source) and secondary research (reviewing existing data).</p>
+                    <div class="flex flex-col lg:flex-row-reverse gap-6 items-center">
+                        <div class="w-full lg:w-2/5">
+                            <p class="mb-2"><strong>What:</strong> The systematic gathering of specific data about your target customers, industry landscape, and competitors.</p>
+                            <p class="mb-2"><strong>Why:</strong> To replace assumptions with factual evidence and deeply understand the competitive environment you are entering.</p>
+                            <p><strong>How:</strong> Use a mix of primary research (surveys, customer interviews, focus groups) and secondary research (industry reports and public data).</p>
+                        </div>
+                        <div class="w-full lg:w-3/5">
+                            <div class="chart-container h-64 md:h-72">
+                                <canvas id="researchChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg card-shadow">
+                    <h3 class="text-2xl font-bold text-[#004D40] mb-4 text-center">4. Analyze & Verify Results</h3>
+                    <p class="text-center text-gray-600 mb-6">Data is just noise until you analyze it. A SWOT analysis helps verify your position.</p>
+                    <div class="chart-container h-72 md:h-80">
+                        <canvas id="swotChart"></canvas>
+                    </div>
+                    <div class="mt-6">
+                        <p class="mb-2"><strong>What:</strong> Processing, interpreting, and verifying the collected market data to derive actionable insights.</p>
+                        <p class="mb-2"><strong>Why:</strong> To confirm *what* the market truly needs and *how* your idea must be adjusted (or pivoted) to maximize its chances of success.</p>
+                        <p><strong>How:</strong> Perform a rigorous SWOT analysis, create buyer personas, and develop a final, market-verified product hypothesis.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg card-shadow flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-[#004D40] mb-3">5. Building Competent Human Resource <span class="ml-2">👥</span></h3>
+                    <p class="mb-4"><strong>What:</strong> Identifying and assembling the right team and organizational structure with the necessary skills to execute the business plan.</p>
+                    <p class="mb-4"><strong>Why:</strong> The people are the engine; a great idea requires great, competent talent to be executed efficiently and effectively.</p>
+                    <p><strong>How:</strong> Define key roles and responsibilities, recruit specialists, and establish a clear delegation and accountability framework.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 md:mb-24">
+            <h2 class="text-3xl font-bold text-center text-[#004D40] mb-12">Launch & Learn</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+
+                <div class="bg-white p-6 rounded-lg card-shadow flex flex-col justify-center order-2 lg:order-1">
+                    <h3 class="text-2xl font-bold text-[#004D40] mb-3">6. Launch <span class="ml-2">🚀</span></h3>
+                    <p class="mb-4"><strong>What:</strong> The execution phase where the product or service is formally introduced to the chosen target market.</p>
+                    <p class="mb-4"><strong>Why:</strong> To start generating revenue, acquire crucial early-adopter customers, and test the business model’s viability under real-world conditions.</p>
+                    <p><strong>How:</strong> Develop a detailed launch plan, release a Minimum Viable Product (MVP), and run initial marketing and sales campaigns.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg card-shadow order-1 lg:order-2">
+                    <h3 class="text-2xl font-bold text-[#004D40] mb-4 text-center">7. Learning & Growing</h3>
+                    <p class="text-center text-gray-600 mb-6">The launch is just the beginning. The final step is a continuous loop of tracking performance and iterating.</p>
+                    <div class="chart-container h-72 md:h-80">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                    <div class="mt-6">
+                        <p class="mb-2"><strong>What:</strong> The continuous process of monitoring performance, collecting customer feedback, and adapting the business strategy.</p>
+                        <p class="mb-2"><strong>Why:</strong> To ensure long-term survival, maintain a competitive edge, and achieve sustained, scalable growth.</p>
+                        <p><strong>How:</strong> Track essential KPIs, solicit qualitative feedback, and make iterative improvements—feeding new ideas back into Step 1 or 2.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer class="text-center my-16">
+            <div class="text-center text-[#004D40] font-bold text-2xl p-6 rounded-lg border-4 border-dashed border-[#00796B] max-w-2xl mx-auto">
+                <span class="text-4xl mr-3">🔄</span>
+                The Process is Cyclical: Learning feeds new Ideas.
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const chartColors = ['#FF6F61', '#FDD835', '#42A5F5', '#00796B', '#7E57C2', '#66BB6A'];
+            const gridColor = 'rgba(51, 51, 51, 0.1)';
+            const textColor = '#333333';
+            const textFont = "'Inter', sans-serif";
+
+            const wrapLabel = (label, maxWidth) => {
+                if (label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > maxWidth) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                }
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const requiredTooltipConfig = {
+                plugins: {
+                    tooltip: {
+                        bodyFont: { family: textFont, size: 14 },
+                        titleFont: { family: textFont, size: 16, weight: 'bold' },
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            font: { family: textFont, size: 14 },
+                            color: textColor
+                        }
+                    }
+                }
+            };
+            
+            const chartOptionsBase = {
+                responsive: true,
+                maintainAspectRatio: false,
+                ...requiredTooltipConfig
+            };
+
+            const researchCtx = document.getElementById('researchChart')?.getContext('2d');
+            if (researchCtx) {
+                new Chart(researchCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: [
+                            wrapLabel('Primary (Surveys, Interviews)', 16),
+                            wrapLabel('Secondary (Industry Reports)', 16)
+                        ],
+                        datasets: [{
+                            label: 'Research Method',
+                            data: [65, 35],
+                            backgroundColor: [chartColors[0], chartColors[1]],
+                            borderColor: '#F5F5F5',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        ...chartOptionsBase,
+                        plugins: {
+                            ...chartOptionsBase.plugins,
+                            legend: {
+                                position: 'bottom',
+                                ...chartOptionsBase.plugins.legend
+                            }
+                        }
+                    }
+                });
+            }
+
+            const swotCtx = document.getElementById('swotChart')?.getContext('2d');
+            if (swotCtx) {
+                new Chart(swotCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Strengths', 'Weaknesses', 'Opportunities', 'Threats'],
+                        datasets: [{
+                            label: 'Hypothetical SWOT Score',
+                            data: [8, 4, 7, 5],
+                            backgroundColor: 'rgba(255, 111, 97, 0.2)',
+                            borderColor: chartColors[0],
+                            borderWidth: 2,
+                            pointBackgroundColor: chartColors[0],
+                            pointRadius: 4
+                        }]
+                    },
+                    options: {
+                        ...chartOptionsBase,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                max: 10,
+                                grid: { color: gridColor },
+                                angleLines: { color: gridColor },
+                                pointLabels: {
+                                    font: { family: textFont, size: 14, weight: '600' },
+                                    color: textColor
+                                },
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    color: textColor
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...chartOptionsBase.plugins,
+                            legend: {
+                                position: 'bottom',
+                                ...chartOptionsBase.plugins.legend
+                            }
+                        }
+                    }
+                });
+            }
+
+            const growthCtx = document.getElementById('growthChart')?.getContext('2d');
+            if (growthCtx) {
+                new Chart(growthCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'],
+                        datasets: [{
+                            label: 'User Retention Rate',
+                            data: [30, 45, 55, 60, 75, 85],
+                            borderColor: chartColors[2],
+                            backgroundColor: 'rgba(66, 165, 245, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        ...chartOptionsBase,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                grid: { color: gridColor },
+                                ticks: { 
+                                    color: textColor,
+                                    font: { family: textFont }
+                                 }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { 
+                                    color: textColor,
+                                    font: { family: textFont }
+                                }
+                            }
+                        },
+                        plugins: {
+                            ...chartOptionsBase.plugins,
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

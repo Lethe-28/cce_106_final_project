@@ -2,31 +2,73 @@ import 'package:flutter/material.dart';
 import 'style_preview_card.dart';
 
 class StyleGrid extends StatelessWidget {
-  const StyleGrid({super.key});
+  final Function(int) onStyleTapped;
+
+  const StyleGrid({
+    super.key,
+    required this.onStyleTapped,
+  });
 
   @override
   Widget build(BuildContext context) {
-    // This is the "Container" holding your grid.
-    // GridView.builder is the correct widget for performance.
     return GridView.builder(
-      // This delegate controls the layout
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3, // As seen in your sketch
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-        childAspectRatio: 0.8, // Adjust ratio of width to height
+        crossAxisCount: 3, // 3 columns makes them smaller
+        crossAxisSpacing: 8, 
+        mainAxisSpacing: 8,
+        childAspectRatio: 0.9, 
       ),
-      // In a real app, this count would come from your Supabase query
-      itemCount: 9, // Using 9 as in your sketch
+      itemCount: 9,
       itemBuilder: (context, index) {
-        // Here you would pass in real data
-        // For now, we'll just alternate styles for the example
-        final style = (index % 3 == 0) ? "Anime" : "Oil Painting";
         
-        // Component 5: The individual card
-        return StylePreviewCard(
-          styleName: style,
-          // You would also pass the image URL here
+        // --- 1. SPECIAL CARD FOR INDEX 0 (Navigates to Photo Grid) ---
+        if (index == 0) {
+          return GestureDetector(
+            onTap: () => onStyleTapped(index),
+            child: Container(
+              decoration: BoxDecoration(
+                // Using the pink accent color from your nav bar
+                color: Color.fromARGB(255, 235, 153, 47).withOpacity(0.08), 
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: Color.fromARGB(255, 235, 153, 47).withOpacity(0.3),
+                  width: 1.5
+                ),
+              ),
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.auto_awesome_mosaic, 
+                    size: 28, 
+                    color: Color.fromARGB(255, 235, 153, 47)
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "All Photos",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 235, 153, 47),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
+        // --- 2. STANDARD CARDS FOR OTHER INDEXES ---
+        final style = (index % 3 == 0) ? "Anime" : "Oil Paint";
+
+        return GestureDetector(
+          onTap: () => onStyleTapped(index),
+          child: StylePreviewCard(
+            styleName: style,
+          ),
         );
       },
     );

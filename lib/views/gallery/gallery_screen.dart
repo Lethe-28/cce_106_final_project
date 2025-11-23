@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../components/add_new_style.dart';
 import '../components/gallery_header.dart';
 import '../components/style_grid.dart';
+import 'photo_grid_screen.dart'; // <--- Make sure this is imported
 
 class GalleryScreen extends StatefulWidget {
   const GalleryScreen({super.key});
@@ -11,34 +11,47 @@ class GalleryScreen extends StatefulWidget {
 }
 
 class _GalleryScreenState extends State<GalleryScreen> {
-  // int _currentIndex = 0; // REMOVE this - it's handled by RootScreen now
+
+  void _onAlbumTapped(int index) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        // FIX: Use PhotoGridScreen here, NOT GalleryPhotoGrid
+        builder: (context) => PhotoGridScreen(
+          albumTitle: index == 0 ? "All Photos" : "Album $index",
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    // Wrap your existing content in a Scaffold (if not already)
     return Scaffold(
-      // AppBar can be here, specific to this tab's content
-      // appBar: AppBar(title: const Text("Your Creations")), 
-      body: const SafeArea(
+      backgroundColor: Colors.white,
+      body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: 16),
-              GalleryHeader(),
-              SizedBox(height: 24),
-              Expanded(
-                child: StyleGrid(),
-              ),
-              SizedBox(height: 24),
-              AddNewStyleCard(),
-              SizedBox(height: 16),
-            ],
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: SingleChildScrollView(
+            // Padding to prevent content from hiding behind the floating nav bar
+            padding: const EdgeInsets.only(bottom: 120),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 16),
+                const GalleryHeader(),
+                const SizedBox(height: 24),
+                
+                // The Grid
+                StyleGrid(
+                  onStyleTapped: _onAlbumTapped,
+                ),
+                
+                // Removed AddNewStyleCard() as planned
+              ],
+            ),
           ),
         ),
       ),
-      // REMOVE bottomNavigationBar here. It's now in RootScreen.
     );
   }
 }
